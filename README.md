@@ -4,11 +4,13 @@ Dark mode stops at text. You turn it on, the page goes dark, and then:
 
 - A lecture video fills the screen with a blinding white slide.
 - A diagram with a transparent background shows black text on a black page, so you can't read it.
-- Tools like Dark Reader only offer a whole-page invert, which turns every photo and every face into a negative.
+- Tools like Dark Reader only offer a whole-page invert, which inverts every photo and every face along with the page.
 
 Turning dark mode off isn't a fix either, because then the whole page goes white.
 
-**media-darkener is one bookmark you click to fix this.** Click it on any page and bright image and video backgrounds turn dark, and the text on them turns light. People, faces and photos keep their real colours. Click again to switch it off.
+**media-darkener is one bookmark you click to fix this.** Click it on any page and bright image and video backgrounds turn dark, and the text on them turns light. Unlike tools that invert whole images or videos, it inverts only the bright background, so faces and photos keep their natural colours. Click again to switch it off.
+
+![Before and after: a lecture slide and a transparent diagram on a dark page](docs/demo.png)
 
 ## Install
 
@@ -26,10 +28,12 @@ An SVG filter applied to `img`, `video`, `iframe` and background-image elements:
 3. Dilate the mask by 3px so thin text inside the background is covered too.
 4. Invert (plus 180° hue rotate to keep colours) only inside the mask.
 
-Tuning knobs live in `invert()` in `index.html`: threshold (`slope`/`intercept`), warm penalty (`-3`), dilate `radius`.
+Tuning knobs live in `invert()` in `media-darkener.js`: threshold (`slope`/`intercept`), warm penalty (`-3`), dilate `radius`.
 
 ## Limits
 
-- Large bright text inside photos turns dark with a light outline.
+- Bright text inside photos or on coloured bars turns dark with a light outline.
 - Warm light backgrounds (cream slides) are not inverted.
 - Elements added after clicking are covered; iframes are filtered as a whole.
+
+The demo image is rendered from `docs/demo.html` with the real filter.

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 260" width="640" height="260" font-family="Helvetica, Arial, sans-serif" font-size="15">
+  <!-- no background: transparent, like many diagram PNGs -->
+  <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#000"/></marker></defs>
+  <g fill="none" stroke="#000" stroke-width="2">
+    <rect x="20" y="60" width="160" height="120"/>
+    <rect x="240" y="50" width="160" height="140" fill="#eee"/>
+    <rect x="460" y="60" width="160" height="120"/>
+    <line x1="180" y1="120" x2="238" y2="120" marker-end="url(#a)"/>
+    <line x1="400" y1="120" x2="458" y2="120" marker-end="url(#a)"/>
+  </g>
+  <text x="20" y="40" font-weight="bold" text-decoration="underline">Inputs</text>
+  <text x="460" y="40" font-weight="bold" text-decoration="underline">Outputs</text>
+  <g fill="#000">
+    <text x="35" y="95">Sunlight</text><text x="35" y="120">Water</text><text x="35" y="145">Carbon dioxide</text>
+    <text x="320" y="115" font-weight="bold" font-size="18" text-anchor="middle">Leaf</text>
+    <text x="320" y="138" font-weight="bold" font-size="18" text-anchor="middle">cell</text>
+    <text x="475" y="95">Glucose</text><text x="475" y="120">Oxygen</text><text x="475" y="145">Water</text>
+  </g>
+  <path d="M260 200 L380 200 L320 245 Z" fill="#a3a6e6"/>
+</svg>

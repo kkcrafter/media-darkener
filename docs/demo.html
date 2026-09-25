@@ -1,0 +1,22 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Media Darkener demo</title>
+<!-- Renders docs/demo.png: the right column runs the real filter from media-darkener.js. -->
+<style>
+  body { margin: 0; padding: 32px; background: #121212; color: #ddd; font: 600 22px system-ui, sans-serif; width: 1336px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 40px; }
+  h2 { margin: 0; font-size: 22px; color: #aaa; }
+  h2 b { color: #7fd6a4; }
+  img { width: 100%; display: block; }
+  .off { filter: none !important; }
+</style>
+<div class="grid">
+  <h2>Normal dark mode</h2>
+  <h2>With <b>Media Darkener</b></h2>
+  <img class="off" src="slide.svg">
+  <img src="slide.svg">
+  <img class="off" src="diagram.svg">
+  <img src="diagram.svg">
+</div>
+<script src="../media-darkener.js"></script>
+<script>invert();</script>
