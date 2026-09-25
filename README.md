@@ -8,11 +8,22 @@ Dark mode stops at text. You turn it on, the page goes dark, and then:
 
 Turning dark mode off isn't a fix either, because then the whole page goes white.
 
-**media-darkener is one bookmark you click to fix this.** Click it on any page and bright image and video backgrounds turn dark, and the text on them turns light. Unlike tools that invert whole images or videos, it inverts only the bright background, so faces and photos keep their natural colours. Click again to switch it off.
+**media-darkener is one button you click to fix this.** Click it on any page and bright image and video backgrounds turn dark, and the text on them turns light. Unlike tools that invert whole images or videos, it inverts only the bright background, so faces and photos keep their natural colours. Click again to switch it off.
 
 ![Before and after: a lecture slide and a transparent diagram on a dark page](docs/demo.png)
 
 ## Install
+
+### Extension (recommended)
+
+Adds a floating toggle button next to the scrollbar on every page, plus a keyboard shortcut (`Alt+Shift+D`, change it at `chrome://extensions/shortcuts`). On/off is remembered per site.
+
+1. Open `chrome://extensions` (or `brave://extensions`) and turn on **Developer mode**.
+2. Click **Load unpacked** and pick the `extension` folder.
+
+### Bookmarklet
+
+No install, but you click it again after every page load.
 
 1. Open `index.html` in your browser.
 2. Drag the **Media Darkener** link to your bookmarks bar.
@@ -28,7 +39,7 @@ An SVG filter applied to `img`, `video`, `iframe` and background-image elements:
 3. Dilate the mask by 3px so thin text inside the background is covered too.
 4. Invert (plus 180° hue rotate to keep colours) only inside the mask.
 
-Tuning knobs live in `invert()` in `media-darkener.js`: threshold (`slope`/`intercept`), warm penalty (`-3`), dilate `radius`.
+Tuning knobs live in `invert()` in `extension/media-darkener.js`: threshold (`slope`/`intercept`), warm penalty (`-3`), dilate `radius`.
 
 ## Limits
 

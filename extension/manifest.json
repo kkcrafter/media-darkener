@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "Media Darkener",
+  "version": "1.0.0",
+  "description": "Real dark mode for images and videos. Darkens bright slides and diagrams, keeps faces and photos in their true colours.",
+  "icons": { "128": "icon.png" },
+  "permissions": ["storage"],
+  "background": { "service_worker": "background.js" },
+  "content_scripts": [{ "matches": ["<all_urls>"], "js": ["media-darkener.js", "content.js"] }],
+  "commands": {
+    "toggle": { "suggested_key": { "default": "Alt+Shift+D" }, "description": "Toggle Media Darkener" }
+  }
+}
