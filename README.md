@@ -44,7 +44,7 @@ Tuning knobs live in `invert()` in `extension/media-darkener.js`: threshold (`sl
 
 ## Limits
 
-- Dark text on a dark background (for example a screenshot already taken in dark mode) stays dark: there is nothing bright to flip.
+- Images with a dark background are left as they are. Only bright or transparent backgrounds are inverted.
 - The edges of inverted areas get a faint light glow.
 - Warm light backgrounds (cream slides) are not inverted.
 - Elements added after clicking are covered; iframes are filtered as a whole.
