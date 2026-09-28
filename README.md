@@ -45,7 +45,6 @@ Tuning knobs live in `invert()` in `extension/media-darkener.js`: threshold (`sl
 ## Limits
 
 - Images with a dark background are left as they are. Only bright or transparent backgrounds are inverted.
-- The edges of inverted areas get a faint light glow.
 - Warm light backgrounds (cream slides) are not inverted.
 - Elements added after clicking are covered; iframes are filtered as a whole.
 
