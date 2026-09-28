@@ -36,14 +36,16 @@ An SVG filter applied to `img`, `video`, `iframe` and background-image elements:
 
 1. Flatten transparency onto white, so dark text on transparent PNGs counts as foreground.
 2. Mask pixels that are bright and not warm (`luma - 3 * max(R - B, 0)` above ~0.85), so skin highlights are skipped.
-3. Dilate the mask by 3px so thin text inside the background is covered too.
-4. Invert (plus 180° hue rotate to keep colours) only inside the mask.
+3. Blur the mask and keep only areas that are mostly bright. Dark text inside a white slide is included; white text on an already-dark image, or a small highlight, is not.
+4. Inside those areas flip only paper (very bright) and ink (very dark) pixels, so mid-tone colours such as chart bars and skin stay as they are.
+5. Invert (plus 180° hue rotate to keep colours) only inside the mask.
 
-Tuning knobs live in `invert()` in `extension/media-darkener.js`: threshold (`slope`/`intercept`), warm penalty (`-3`), dilate `radius`.
+Tuning knobs live in `invert()` in `extension/media-darkener.js`: threshold (`slope`/`intercept`), warm penalty (`-3`), blur `stdDeviation`, density threshold.
 
 ## Limits
 
-- Bright text inside photos or on coloured bars turns dark with a light outline.
+- Dark text on a dark background (for example a screenshot already taken in dark mode) stays dark: there is nothing bright to flip.
+- The edges of inverted areas get a faint light glow.
 - Warm light backgrounds (cream slides) are not inverted.
 - Elements added after clicking are covered; iframes are filtered as a whole.
 
