@@ -40,6 +40,8 @@ An SVG filter applied to `img`, `video`, `iframe` and background-image elements:
 4. Inside those areas flip only paper (very bright) and ink (very dark) pixels, so mid-tone colours such as chart bars and skin stay as they are.
 5. Invert (plus 180° hue rotate to keep colours) only inside the mask.
 
+Some sites (Facebook, for example) fill the space around an image with a CSS background taken from its edge colour. A bright box that frames an image or video like that gets a black background too.
+
 Tuning knobs live in `invert()` in `extension/media-darkener.js`: threshold (`slope`/`intercept`), warm penalty (`-3`), blur `stdDeviation`, density threshold.
 
 ## Limits

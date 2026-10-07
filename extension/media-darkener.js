@@ -10,9 +10,29 @@
 // Only warm is penalised: compressed white text on blue picks up a blue tint and must still count.
 // ponytail: fixed brightness 0.8-0.9, warm penalty 3, blur 10px, paper density 0.3-0.4, ink density 0.5-0.6; tune if text or faces misbehave.
 // No innerHTML: sites with Trusted Types (YouTube) block it, so build nodes with DOM calls.
+// Letterbox fix: sites like Facebook fill the space around an image with a CSS background taken from its
+// edge colour. A bright-background box that wraps media like a frame (shares its width or height, up to 6
+// levels up) gets a black background. Rescanned every 2s for infinite-scroll feeds.
+// ponytail: 2s polling, a MutationObserver if it ever shows up in profiles.
 function invert() {
   const s = document.getElementById('__inv');
-  if (s) return s.remove();
+  if (s) {
+    clearInterval(+s.dataset.t);
+    document.querySelectorAll('.__invbox').forEach(n => n.classList.remove('__invbox'));
+    return s.remove();
+  }
+  const scan = () => {
+    for (const m of document.querySelectorAll('img,video')) {
+      const r = m.getBoundingClientRect();
+      if (r.width < 50 || r.height < 50) continue;
+      for (let p = m.parentElement, i = 0; p && i < 6; p = p.parentElement, i++) {
+        const q = p.getBoundingClientRect();
+        if (Math.abs(q.width - r.width) > 2 && Math.abs(q.height - r.height) > 2) break;
+        const c = getComputedStyle(p).backgroundColor.match(/[\d.]+/g);
+        if (c && (c[3] ?? 1) > .5 && .2126 * c[0] + .7152 * c[1] + .0722 * c[2] > 200) p.classList.add('__invbox');
+      }
+    }
+  };
   const el = (tag, attrs, ...kids) => {
     const n = document.createElementNS('http://www.w3.org/2000/svg', tag);
     for (const k in attrs) n.setAttribute(k, attrs[k]);
@@ -21,7 +41,7 @@ function invert() {
   };
   const neg = c => el('feFunc' + c, {type: 'table', tableValues: '1 0'});
   const style = document.createElement('style');
-  style.textContent = 'img,video,iframe,[style*=background-image]{filter:url(#__bg)!important}';
+  style.textContent = 'img,video,iframe,[style*=background-image]{filter:url(#__bg)!important}.__invbox{background-color:#000!important}';
   const svg = el('svg', {width: 0, height: 0, style: 'position:absolute'},
     el('filter', {id: '__bg', x: 0, y: 0, width: 1, height: 1, 'color-interpolation-filters': 'sRGB'},
       el('feFlood', {'flood-color': '#fff'}),
@@ -50,4 +70,6 @@ function invert() {
   e.id = '__inv';
   e.append(style, svg);
   document.body.append(e);
+  scan();
+  e.dataset.t = setInterval(scan, 2000);
 }
