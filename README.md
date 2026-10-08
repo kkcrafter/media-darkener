@@ -16,7 +16,7 @@ Turning dark mode off isn't a fix either, because then the whole page goes white
 
 ### Extension (recommended)
 
-Adds a floating toggle button next to the scrollbar on every page, plus a keyboard shortcut (`Alt+Shift+D`, change it at `chrome://extensions/shortcuts`). On/off is remembered per site.
+Adds a floating toggle button to every page (bottom right; drag it anywhere, the position is remembered), a toolbar icon that toggles too, plus a keyboard shortcut (`Alt+Shift+D`, change it at `chrome://extensions/shortcuts`). On/off is remembered per site.
 
 1. Open `chrome://extensions` (or `brave://extensions`) and turn on **Developer mode**.
 2. Click **Load unpacked** and pick the `extension` folder.
