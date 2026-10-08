@@ -21,6 +21,8 @@ Adds a floating toggle button to every page (bottom right; drag it anywhere, the
 1. Open `chrome://extensions` (or `brave://extensions`) and turn on **Developer mode**.
 2. Click **Load unpacked** and pick the `extension` folder.
 
+When loaded this way it reloads itself within about 30 seconds of a file change; refresh open tabs to pick up the new version.
+
 ### Bookmarklet
 
 No install, but you click it again after every page load.
