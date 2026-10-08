@@ -35,19 +35,19 @@ It works in Chrome, Brave and other Chromium browsers, including on sites with s
 An SVG filter applied to `img`, `video`, `iframe` and background-image elements:
 
 1. Flatten transparency onto white, so dark text on transparent PNGs counts as foreground.
-2. Mask pixels that are bright and not warm (`luma - 3 * max(R - B, 0)` above ~0.85), so skin highlights are skipped.
+2. Mask pixels that are bright and not warm (`luma - 1.5 * max(R - B, 0)` above ~0.78), so skin highlights are skipped.
 3. Blur the mask and keep only areas that are mostly bright. Dark text inside a white slide is included; white text on an already-dark image, or a small highlight, is not.
 4. Inside those areas flip only paper (very bright) and ink (very dark) pixels, so mid-tone colours such as chart bars and skin stay as they are.
 5. Invert (plus 180° hue rotate to keep colours) only inside the mask.
 
 Some sites (Facebook, for example) fill the space around an image with a CSS background taken from its edge colour. A bright box that frames an image or video like that gets a black background too.
 
-Tuning knobs live in `invert()` in `extension/media-darkener.js`: threshold (`slope`/`intercept`), warm penalty (`-3`), blur `stdDeviation`, density threshold.
+Tuning knobs live in `invert()` in `extension/media-darkener.js`: threshold (`slope`/`intercept`), warm penalty (`-1.5`), blur `stdDeviation`, density threshold.
 
 ## Limits
 
 - Images with a dark background are left as they are. Only bright or transparent backgrounds are inverted.
-- Warm light backgrounds (cream slides) are not inverted.
+- Strongly tinted light backgrounds (yellow, peach) are not inverted; cream and off-white are.
 - Elements added after clicking are covered; iframes are filtered as a whole.
 
 The demo image is rendered from `docs/demo.html` with the real filter.
