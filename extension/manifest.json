@@ -7,7 +7,7 @@
   "permissions": ["storage", "alarms"],
   "action": { "default_title": "Toggle Media Darkener", "default_icon": "icon.png" },
   "background": { "service_worker": "background.js" },
-  "content_scripts": [{ "matches": ["<all_urls>"], "js": ["media-darkener.js", "content.js"] }],
+  "content_scripts": [{ "matches": ["<all_urls>"], "js": ["media-darkener.js", "content.js"], "all_frames": true }],
   "commands": {
     "toggle": { "suggested_key": { "default": "Alt+Shift+D" }, "description": "Toggle Media Darkener" }
   }

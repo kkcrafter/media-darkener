@@ -50,6 +50,6 @@ Tuning knobs live in `invert()` in `extension/media-darkener.js`: threshold (`sl
 
 - Images with a dark background are left as they are. Only bright or transparent backgrounds are inverted.
 - Strongly tinted light backgrounds (yellow, peach) are not inverted; cream and off-white are.
-- Elements added after clicking are covered; iframes are filtered as a whole.
+- Embedded content from another site (Genially, YouTube embeds) is darkened by the extension only; the bookmarklet cannot reach inside it.
 
 The demo image is rendered from `docs/demo.html` with the real filter.
